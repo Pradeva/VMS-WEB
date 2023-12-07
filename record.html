@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RECORD</title>
+  <meta name="theme-color" content="#3b5998">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-xr5VpTwmGhCunz5VHKCPQ9K5UkNfgb1jgjqk94BY/KxI1bVKQoF+pLn6+bFjsBf9w3caFg9cB/gfrxhm8LZtkYw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!--Style-->
+  <link rel="stylesheet" href="static/css/default_record.css" />
+  <link rel="stylesheet" href="static/css/default.css" />
+  <link rel="stylesheet" href="static/css/font-awesome.min.css">
+
+  <!-- Scripts -->
+  <script src="static/js/scripts_record.js"></script>
+</head>
+
+<body style="background-color: #1D2835;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #576cbc; height: 52px;">
+    <button class="back-button" id="sidebar-button"><i class="fa-solid fa-bars" style="font-size: 24px; margin-left: 10px; color: white;"></i></button>
+    <div style="margin-left: 30px;"><img src="/static/images/BinaMarga.png" width="40" height="40"></div>
+    <div style="margin-left: 5px;">
+        <div class="topPanelTitle" style="font-weight: 600; color: white;">DINAS BINA MARGA</div>
+        <div style="font-size: 10px; color: white; font-weight: 600;">PROVINSI DKI JAKARTA</div>
+    </div>
+  </nav>
+
+  <div class="row" style="height: calc(100vh - 52px); width: 100%; overflow: auto;">
+    <!-- Sidebar -->
+    <div class="col-md-2" style="background-color: #19376D; padding: 0;" id="sidebar">
+      <div style="margin-top: 30px;">
+        <a href="http://dbm-dashboard.rastek.id/" style="text-decoration: none;">
+          <button class="sidebar-items" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;">
+            <div style="width: 30px;">
+              <i class="fa-solid fa-table-columns" ></i>
+            </div>
+            <p style="margin: 0; margin-left: 10px;">Dashboard</p>
+          </button>
+        </a>
+      </div>
+
+      <div style="margin-top: 10px;" id="floor1">
+        <button 
+          class="sidebar-items" 
+          style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+          onclick="toggleFloor('floor1')"
+        >
+          <div style="width: 30px;">
+            <i class="fa-solid fa-map-pin"></i>
+          </div>
+          <p style="margin: 0; margin-left: 10px;">Bundaran Senayan</p>
+          <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
+        </button>
+        <div class="card-content" style="max-height: 0px; border-radius: 5px;">
+          <div style="margin-left: 50px;">
+            <button 
+              class="sidebar-items" 
+              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+              id="button1"
+            >
+              <p>Record</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 10px;" id="floor2">
+          <button 
+              class="sidebar-items" 
+              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+              onclick="toggleFloor('floor2')"
+          >
+              <div style="width: 30px;">
+                  <i class="fa-solid fa-map-pin"></i>
+              </div>
+              <p style="margin: 0; margin-left: 10px;">Polda Metro Jaya</p>
+              <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
+          </button>
+          <div class="card-content" style="max-height: 0px; border-radius: 5px;">
+              <div style="margin-left: 50px;">
+                  <button 
+                      class="sidebar-items" 
+                      style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                      id="button2"
+                  >
+                      <p>Record</p>
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <div style="margin-top: 10px;" id="floor3">
+          <button 
+              class="sidebar-items" 
+              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+              onclick="toggleFloor('floor3')"
+          >
+              <div style="width: 30px;">
+                  <i class="fa-solid fa-map-pin"></i>
+              </div>
+              <p style="margin: 0; margin-left: 10px;">Gelora Bung Karno</p>
+              <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
+          </button>
+          <div class="card-content" style="max-height: 0px; border-radius: 5px;">
+              <div style="margin-left: 50px;">
+                  <button 
+                      class="sidebar-items" 
+                      style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                      id="button3"
+                  >
+                      <p>Record</p>
+                  </button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-10">
+      <div style="color: white; margin-left: 10px; margin-top: 10px; font-weight: 600; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+        <span id="spotName">NAMA SPOT : </span>
+      </div>
+      <div style="width: 100%; height: calc(100% - 54px); background-color: transparent; margin-top: 10px; margin-left: 10px;" id="white-box">
+        
+        <div style="height: fit-content; width: 100%; background-color: transparent; display: none;" id="floor1view">
+          {{#each cameras}}
+            {{#ifFloor this.floor "JPO-001"}}
+              <div>
+                <div style="margin-bottom: 10px; margin-top: 10px;">
+                  <span style="font-size: 20px; font-weight: 400; color: white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                    {{this.name}}
+                  </span>
+                  <button class="btn btn-primary button-load" onclick="generateVideos('{{this.path}}')"><i class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+                </div>
+                <div id="videoContainer{{this.path}}" style="width: 100%; height: 200px;display: flex; overflow-x: auto;">
+                  
+                </div>
+              </div>
+            {{/ifFloor}}
+          {{/each}}
+        </div>
+        <div style="height: fit-content; width: 100%; background-color: transparent; display: none;" id="floor2view">
+          {{#each cameras}}
+            {{#ifFloor this.floor "JPO-002"}}
+              <div>
+                <div style="margin-bottom: 10px; margin-top: 10px;">
+                  <span style="font-size: 20px; font-weight: 400; color: white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                    {{this.name}}
+                  </span>
+                  <button class="btn btn-primary button-load" onclick="generateVideos('{{this.path}}')"><i class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+                </div>
+                <div id="videoContainer{{this.path}}" style="width: 100%; height: 200px; display: flex; overflow-x: auto;">
+
+                </div>
+              </div>
+            {{/ifFloor}}
+          {{/each}}
+        </div>
+        <div style="height: fit-content; width: 100%; background-color: transparent; display: none;" id="floor3view">
+          {{#each cameras}}
+            {{#ifFloor this.floor "JPO-003"}}
+              <div>
+                <div style="margin-bottom: 10px; margin-top: 10px;">
+                  <span style="font-size: 20px; font-weight: 400; color: white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                    {{this.name}}
+                  </span>
+                  <button class="btn btn-primary button-load" onclick="generateVideos('{{this.path}}')"><i class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+                </div>
+                <div id="videoContainer{{this.path}}" style="width: 100%; height: 200px; display: flex; overflow-x: auto;">
+
+                </div>
+              </div>
+            {{/ifFloor}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var button1 = document.getElementById('button1');
+    var button2 = document.getElementById('button2');
+    var button3 = document.getElementById('button3');
+    var spotName = document.getElementById('spotName');
+    var floor1view = document.getElementById('floor1view');
+    var floor2view = document.getElementById('floor2view');
+    var floor3view = document.getElementById('floor3view');
+
+    button1.addEventListener("click", function(){
+      spotName.textContent = "";
+      spotName.textContent = "NAMA SPOT : GELORA BUNG KARNO"
+
+      floor1view.style.display = "block";
+      floor2view.style.display = "none";
+      floor3view.style.display = "none";
+    });
+
+    button2.addEventListener("click", function(){
+      spotName.textContent = "";
+      spotName.textContent = "NAMA SPOT : POLDA METRO JAYA"
+
+      floor1view.style.display = "none";
+      floor2view.style.display = "block";
+      floor3view.style.display = "none";
+    });
+
+    button3.addEventListener("click", function(){
+      spotName.textContent = "";
+      spotName.textContent = "NAMA SPOT : BUNDARAN SENAYAN"
+      floor1view.style.display = "none";
+      floor2view.style.display = "none";
+      floor3view.style.display = "block";
+    });
+  </script>
+
+  <script>
+    function toggleFloor(floorId) {
+      const cardContent = document.getElementById(floorId).getElementsByClassName('card-content')[0];
+      cardContent.style.maxHeight = cardContent.style.maxHeight === '0px' ? cardContent.scrollHeight + 'px' : '0px';
+      let totalHeight = 0;
+      const floorCards = document.querySelectorAll('.floor-card');
+      floorCards.forEach((floorCard) => {
+        const content = floorCard.querySelector('.card-content');
+        if (floorCard.id === floorId && content.style.maxHeight !== '0px') {
+          totalHeight += content.scrollHeight;
+        }
+      });
+    }
+  </script>
+
+  <script>
+    var sidebarButton = document.getElementById('sidebarButton');
+    var sidebar = document.getElementById('sidebar');
+    var whiteBox = document.getElementById('white-box');
+
+    var statusSidebar = "opened";
+
+    sidebarButton.addEventListener("click", function(){
+      if (statusSidebar === "closed") {
+        sidebar.style.display = "block";
+        statusSidebar = "opened";
+      }else{
+        sidebar.style.display = "none";
+        statusSidebar = "closed";
+      }
+
+      whiteBox.style.width = "100%"
+    });
+  </script>
+
+  <script src="https://kit.fontawesome.com/e748e4b029.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

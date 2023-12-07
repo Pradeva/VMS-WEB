@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VMS</title>
+  <meta name="theme-color" content="#3b5998">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-xr5VpTwmGhCunz5VHKCPQ9K5UkNfgb1jgjqk94BY/KxI1bVKQoF+pLn6+bFjsBf9w3caFg9cB/gfrxhm8LZtkYw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!--Style-->
+  <link rel="stylesheet" href="static/css/default.css" />
+
+  <!-- jquery -->
+  <link rel="stylesheet" href="static/css/jquery-ui.min.css">
+  <script src="static/js/jquery-3.6.0.min.js"></script>
+  <script src="static/js/jquery-ui.min.js"></script>
+
+  <!--Day JS-->
+  <script src="static/js/customParseFormat.js"></script>
+  <script src="static/js/dayjs.min.js"></script>
+
+  <!--timeline-->
+  <link rel="stylesheet" href="static/js/vis-timeline-graph2d.min.css" />
+  <script src="static/js/vis-timeline-graph2d.min.js"></script>
+
+  <!--scripts-->
+  <script type="text/javascript" src="static/js/scripts.js"></script>
+  <script src="static/js/canvas2image.js"></script>
+
+  <!--socket io-->
+  <script src="static/js/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <script>
+    Handlebars.registerHelper('eq', function (a, b, options) {
+      return a === b ? options.fn(this) : options.inverse(this);
+    });
+  </script>
+</head>
+
+<body style="background-color: #1D2835;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #576cbc; height: 52px;">
+        <button class="back-button" id="sidebar-button"><i class="fa-solid fa-bars" style="font-size: 24px; margin-left: 10px; color: white;"></i></button>
+        <div style="margin-left: 30px;"><img src="/static/images/BinaMarga.png" width="40" height="40"></div>
+        <div style="margin-left: 5px;">
+            <div class="topPanelTitle" style="font-weight: 600; color: white;">DINAS BINA MARGA</div>
+            <div style="font-size: 10px; color: white; font-weight: 600;">PROVINSI DKI JAKARTA</div>
+        </div>
+    </nav>
+
+    <div class="row" style="height: calc(100vh - 52px); width: 100%; overflow: auto;">
+        <!-- Sidebar -->
+        <div class="col-md-2" style="background-color: #19376D; padding: 0;" id="sidebar">
+            <div style="margin-top: 30px;">
+                <a href="http://dbm-dashboard.rastek.id/" style="text-decoration: none;">
+                    <button class="sidebar-items" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;">
+                        <div style="width: 30px;">
+                            <i class="fa-solid fa-table-columns" ></i>
+                        </div>
+                        <p style="margin: 0; margin-left: 10px;">Dashboard</p>
+                    </button>
+                </a>
+            </div>
+
+            <div style="margin-top: 10px;">
+                    <button onclick="live('all')" class="sidebar-items" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;">
+                        <div style="width: 30px;">
+                            <i class="fa-solid fa-camera" ></i>
+                        </div>
+                        <p style="margin: 0; margin-left: 10px;">Live ALL</p>
+                    </button>
+              </div>
+
+            <div style="margin-top: 10px;" id="floor1">
+                <button 
+                    class="sidebar-items" 
+                    style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                    onclick="toggleFloor('floor1')"
+                >
+                    <div style="width: 30px;">
+                        <i class="fa-solid fa-map-pin"></i>
+                    </div>
+                    <p style="margin: 0; margin-left: 10px;">Polda Metro Jaya</p>
+                    <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
+                </button>
+                <div class="card-content" style="max-height: 0px; border-radius: 5px;">
+                    <div style="margin-left: 50px;">
+                        <button 
+                            class="sidebar-items" 
+                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                            onclick="live('JPO-001')"
+                        >
+                            <p>Live view</p>
+                        </button>
+                        {{#each cameras}}
+                        {{#ifFloor this.floor "JPO-001"}}
+                            <script>
+                                inputData(`{{this.floor}}`,`{{this.name}}` ,`{{@key}}`)
+                            </script>
+                            <a href="/singleLive/{{@key}}/{{this.name}}/{{this.floor}}" style="text-decoration: none;">
+                                <button 
+                                    class="sidebar-items" 
+                                    style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                                >
+                                    <p>{{this.name}}</p>
+                                </button>
+                            </a>
+                        {{/ifFloor}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 10px;" id="floor2">
+                <button 
+                    class="sidebar-items" 
+                    style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                    onclick="toggleFloor('floor2')"
+                >
+                    <div style="width: 30px;">
+                        <i class="fa-solid fa-map-pin"></i>
+                    </div>
+                    <p style="margin: 0; margin-left: 10px;">Gelora Bung Karno</p>
+                    <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
+                </button>
+                <div class="card-content" style="max-height: 0px; border-radius: 5px;">
+                    <div style="margin-left: 50px;">
+                        <button 
+                            class="sidebar-items" 
+                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                            onclick="live('JPO-002')"
+                        >
+                            <p>Live view</p>
+                        </button>
+                        {{#each cameras}}
+                        {{#ifFloor this.floor "JPO-002"}}
+                            <script>
+                                inputData(`{{this.floor}}`,`{{this.name}}` ,`{{@key}}`)
+                            </script>
+                            <a href="/singleLive/{{@key}}/{{this.name}}/{{this.floor}}" style="text-decoration: none;">
+                                <button 
+                                    class="sidebar-items" 
+                                    style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                                >
+                                    <p>{{this.name}}</p>
+                                </button>
+                            </a>
+                        {{/ifFloor}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px;" id="floor3">
+                <button 
+                    class="sidebar-items" 
+                    style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                    onclick="toggleFloor('floor3')"
+                >
+                    <div style="width: 30px;">
+                        <i class="fa-solid fa-map-pin"></i>
+                    </div>
+                    <p style="margin: 0; margin-left: 10px;">Bundaran Senayan</p>
+                    <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
+                </button>
+                <div class="card-content" style="max-height: 0px; border-radius: 5px;">
+                    <div style="margin-left: 50px;">
+                        <button 
+                            class="sidebar-items" 
+                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                            onclick="live('JPO-003')"
+                        >
+                            <p>Live view</p>
+                        </button>
+                        {{#each cameras}}
+                        {{#ifFloor this.floor "JPO-003"}}
+                            <script>
+                                inputData(`{{this.floor}}`,`{{this.name}}` ,`{{@key}}`)
+                            </script>
+                            <a href="/singleLive/{{@key}}/{{this.name}}/{{this.floor}}" style="text-decoration: none;">
+                                <button 
+                                    class="sidebar-items" 
+                                    style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                                >
+                                    <p>{{this.name}}</p>
+                                </button>
+                            </a>
+                        {{/ifFloor}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <!-- Main Content -->
+            <table class="table" style="display: block;" id="tablePolda">
+                <div id="textTablePolda" style="color: white; text-align: center; margin: 0 auto; padding-top: 10px; font-size: 24px; font-weight: 600;">POLDA METRO JAYA</div>
+                <tbody>
+                    <tr>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName1"></span></div>
+                          <div id="videoCell1" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName2"></span></div>
+                          <div id="videoCell2" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName3"></span></div>
+                          <div id="videoCell3" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName4"></span></div>
+                            <div id="videoCell4" class="border-card-dashboard"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName5"></span></div>
+                          <div id="videoCell5" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName6"></span></div>
+                          <div id="videoCell6" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName7"></span></div>
+                            <div id="videoCell7" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName8"></span></div>
+                            <div id="videoCell8" class="border-card-dashboard"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table" style="display: block;" id="tableGbk">
+                <tbody>
+                    <div id="textTableGbk" style="color: white; text-align: center; margin: 0 auto; padding-top: 10px; font-size: 24px; font-weight: 600;">GELORA BUNG KARNO</div>
+                    <tr>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName9"></span></div>
+                          <div id="videoCell9" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName10"></span></div>
+                            <div id="videoCell10" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName11"></span></div>
+                            <div id="videoCell11" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName12"></span></div>
+                            <div id="videoCell12" class="border-card-dashboard"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName13"></span></div>
+                          <div id="videoCell13" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName14"></span></div>
+                          <div id="videoCell14" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName15"></span></div>
+                          <div id="videoCell15" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName16"></span></div>
+                            <div id="videoCell16" class="border-card-dashboard"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table" style="display: block;" id="tableBunsen">
+                <div id="textTableBunsen" style="color: white; text-align: center; margin: 0 auto; padding-top: 10px; font-size: 24px; font-weight: 600;">BUNDARAN SENAYAN</div>
+                <tbody>
+                    <tr>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName17"></span></div>
+                          <div id="videoCell17" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName18"></span></div>
+                          <div id="videoCell18" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName19"></span></div>
+                            <div id="videoCell19" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName20"></span></div>
+                            <div id="videoCell20" class="border-card-dashboard"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: transparent; border: none;">
+                          <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName21"></span></div>
+                          <div id="videoCell21" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName22"></span></div>
+                            <div id="videoCell22" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName23"></span></div>
+                            <div id="videoCell23" class="border-card-dashboard"></div>
+                        </td>
+                        <td style="background-color: transparent; border: none;">
+                            <div style="color: white; font-weight: 600; margin-bottom: 5px;">Live : <span id="liveName24"></span></div>
+                            <div id="videoCell24" class="border-card-dashboard"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <template id="liveView">
+        <video class="videoLive"></video>
+    </template>
+
+    <template id="scrub">
+        <video class="videoScrub" type="video/mp4" src="" preload="true" muted></video>
+        <div id="timeline"></div>
+    </template>
+
+    <script>
+      function generateSingleLive(ID, Name){
+        fetch(`/singleLive/${ID}/${Name}`)
+          .then(response => {
+            if (response.status === 200) {
+              return response.text();
+            } else {
+              console.error("Gagal")
+            }
+          })
+      }
+    </script>
+
+    <script>
+      const tablePOLDA = document.getElementById("tablePolda")
+      const tableGBK = document.getElementById("tableGbk")
+      const tableBUNSEN = document.getElementById("tableBunsen")
+      const textTablePOLDA = document.getElementById("textTablePolda")
+      const textTableGBK = document.getElementById("textTableGbk")
+      const textTableBUNSEN = document.getElementById("textTableBunsen")
+
+
+      function live(floor) {
+        if (floor == "JPO-001") {
+            tablePOLDA.style.display = "block"
+            tableGBK.style.display = "none"
+            tableBUNSEN.style.display = "none"
+            textTablePOLDA.style.display = "block"
+            textTableGBK.style.display = "none"
+            textTableBUNSEN.style.display = "none"
+        }else if(floor == "JPO-002"){
+            tableGBK.style.display = "block"
+            tableBUNSEN.style.display = "none"
+            tablePOLDA.style.display = "none"
+            textTablePOLDA.style.display = "none"
+            textTableGBK.style.display = "block"
+            textTableBUNSEN.style.display = "none"
+        }else if(floor == "JPO-003"){
+            tableBUNSEN.style.display = "block"
+            tableGBK.style.display = "none"
+            tablePOLDA.style.display = "none"
+            textTablePOLDA.style.display = "none"
+            textTableGBK.style.display = "none"
+            textTableBUNSEN.style.display = "block"
+        }else{
+            tableBUNSEN.style.display = "block"
+            tableGBK.style.display = "block"
+            tablePOLDA.style.display = "block"
+            textTablePOLDA.style.display = "block"
+            textTableGBK.style.display = "block"
+            textTableBUNSEN.style.display = "block"
+        }
+      }
+      function toggleFloor(floorId) {
+        const cardContent = document.getElementById(floorId).getElementsByClassName('card-content')[0];
+        cardContent.style.maxHeight = cardContent.style.maxHeight === '0px' ? cardContent.scrollHeight + 'px' : '0px';
+          // count sum of height from card-content inside .floor-card which opened
+        let totalHeight = 0;
+        const floorCards = document.querySelectorAll('.floor-card');
+        floorCards.forEach((floorCard) => {
+          const content = floorCard.querySelector('.card-content');
+          if (floorCard.id === floorId && content.style.maxHeight !== '0px') {
+            totalHeight += content.scrollHeight;
+          }
+        });
+      }
+    </script>
+    <script>
+
+        // for (let i = 1; i <= 3; i ++){
+        //     livePerJPO('JPO-00' + i, '{{this.liveConfig.codecString}}')
+        // }
+        livePerJPO('JPO-001', '{{this.liveConfig.codecString}}')
+        setTimeout(function() {
+            livePerJPO('JPO-002', '{{this.liveConfig.codecString}}')
+
+        }, 6000);
+        setTimeout(function() {
+            livePerJPO('JPO-003', '{{this.liveConfig.codecString}}')
+
+        }, 12000);
+    </script>
+    <script>
+      var sidebarButton = document.getElementById('sidebar-button');
+      var sidebar = document.getElementById('sidebar');
+  
+      var statusSidebar = "opened";
+  
+      sidebarButton.addEventListener("click", function(){
+        if (statusSidebar === "closed") {
+          sidebar.style.display = "block";
+          statusSidebar = "opened";
+        }else{
+          sidebar.style.display = "none";
+          statusSidebar = "closed";
+        }
+      });
+    </script>
+
+    <!-- Font-Awesome -->
+    <script src="https://kit.fontawesome.com/e748e4b029.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
