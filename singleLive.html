@@ -52,7 +52,7 @@
     <!-- Sidebar -->
     <div class="col-md-2" style="background-color: #19376D; padding: 0;" id="sidebar">
       <div style="margin-top: 30px;">
-          <a href="http://dbm-dashboard.rastek.id/" style="text-decoration: none;">
+          <a href="103.165.198.187:5083/dashboard" style="text-decoration: none;">
               <button class="sidebar-items" style="font-family: sans-serif; background-color: transparent; border: none;">
                   <div style="width: 30px;">
                       <i class="fa-solid fa-table-columns" ></i>
@@ -63,7 +63,7 @@
       </div>
 
       <div style="margin-top: 10px;">
-        <a href="http://10.168.1.22:7878/dashboard" style="text-decoration: none;">
+        <a href="103.165.198.186:7878/dashboard" style="text-decoration: none;">
             <button class="sidebar-items" style="font-family: sans-serif; background-color: transparent; border: none;">
                 <div style="width: 30px;">
                     <i class="fa-solid fa-camera" ></i>
@@ -86,14 +86,14 @@
               <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
           </button>
           <div class="card-content" style="max-height: 0px; border-radius: 5px;">
-                  <a href="https://103.165.198.186:7878/dashboard/1">
-                    <div style="margin-left: 50px;">
-                        <button 
-                        class="sidebar-items" 
-                        style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
-                    >
-                        <p style="font-family: sans-serif; font-weight: 300;">Live view</p>
-                    </button>
+              <div style="margin-left: 50px;">
+                  <a href="http://103.165.198.186:7878/dashboard/1" style="text-decoration: none;">
+                      <button 
+                          class="sidebar-items" 
+                          style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                      >
+                          <p style="font-family: sans-serif; font-weight: 300;">{{this.name}}</p>
+                      </button>
                   </a>
                   {{#each this.Config.cameras}}
                   {{#ifFloor this.floor "JPO-001"}}
@@ -128,14 +128,13 @@
           </button>
           <div class="card-content" style="max-height: 0px; border-radius: 5px;">
               <div style="margin-left: 50px;">
-                  <a href="https://103.165.198.186:7878/dashboard/2">
-                    <div style="margin-left: 50px;">
-                        <button 
-                        class="sidebar-items" 
-                        style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
-                    >
-                        <p style="font-family: sans-serif; font-weight: 300;">Live view</p>
-                    </button>
+                  <a href="http://103.165.198.186:7878/dashboard/2" style="text-decoration: none;">
+                      <button 
+                          class="sidebar-items" 
+                          style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                      >
+                          <p style="font-family: sans-serif; font-weight: 300;">{{this.name}}</p>
+                      </button>
                   </a>
                   {{#each this.Config.cameras}}
                   {{#ifFloor this.floor "JPO-002"}}
@@ -170,14 +169,13 @@
           </button>
           <div class="card-content" style="max-height: 0px; border-radius: 5px;">
               <div style="margin-left: 50px;">
-                  <a href="https://103.165.198.186:7878/dashboard/3">
-                    <div style="margin-left: 50px;">
-                        <button 
-                        class="sidebar-items" 
-                        style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
-                    >
-                        <p style="font-family: sans-serif; font-weight: 300;">Live view</p>
-                    </button>
+                  <a href="http://103.165.198.186:7878/dashboard/3" style="text-decoration: none;">
+                      <button 
+                          class="sidebar-items" 
+                          style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                      >
+                          <p style="font-family: sans-serif; font-weight: 300;">{{this.name}}</p>
+                      </button>
                   </a>
                   {{#each this.Config.cameras}}
                   {{#ifFloor this.floor "JPO-003"}}
