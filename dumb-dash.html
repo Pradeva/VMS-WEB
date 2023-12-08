@@ -12,27 +12,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-xr5VpTwmGhCunz5VHKCPQ9K5UkNfgb1jgjqk94BY/KxI1bVKQoF+pLn6+bFjsBf9w3caFg9cB/gfrxhm8LZtkYw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!--Style-->
-  <link rel="stylesheet" href="static/css/default.css" />
+  <link rel="stylesheet" href="/static/css/default.css" />
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 
-  <!-- jquery -->
-  <link rel="stylesheet" href="static/css/jquery-ui.min.css">
-  <script src="static/js/jquery-3.6.0.min.js"></script>
-  <script src="static/js/jquery-ui.min.js"></script>
+  <!--jquery-->
+  <link rel="stylesheet" href="/static/css/jquery-ui.min.css">
+  <script src="/static/js/jquery-3.6.0.min.js"></script>
+  <script src="/static/js/jquery-ui.min.js"></script>
 
   <!--Day JS-->
-  <script src="static/js/customParseFormat.js"></script>
-  <script src="static/js/dayjs.min.js"></script>
+  <script src="/static/js/customParseFormat.js"></script>
+  <script src="/static/js/dayjs.min.js"></script>
 
   <!--timeline-->
-  <link rel="stylesheet" href="static/js/vis-timeline-graph2d.min.css" />
-  <script src="static/js/vis-timeline-graph2d.min.js"></script>
+  <link rel="stylesheet" href="/static/js/vis-timeline-graph2d.min.css" />
+  <script src="/static/js/vis-timeline-graph2d.min.js"></script>
 
   <!--scripts-->
-  <script type="text/javascript" src="static/js/scripts.js"></script>
-  <script src="static/js/canvas2image.js"></script>
+  <script type="text/javascript" src="/static/js/scripts.js"></script>
+  <script src="/static/js/canvas2image.js"></script>
 
   <!--socket io-->
-  <script src="static/js/socket.io.min.js"></script>
+  <script src="/static/js/socket.io.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
   <script>
     Handlebars.registerHelper('eq', function (a, b, options) {
@@ -64,15 +65,14 @@
                     </button>
                 </a>
             </div>
-
             <div style="margin-top: 10px;">
-                    <button onclick="live('all')" class="sidebar-items" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;">
-                        <div style="width: 30px;">
-                            <i class="fa-solid fa-camera" ></i>
-                        </div>
-                        <p style="margin: 0; margin-left: 10px; font-family: sans-serif; font-weight: 300;">Live all</p>
-                    </button>
-              </div>
+                <button onclick="live('all')" class="sidebar-items" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;">
+                    <div style="width: 30px;">
+                        <i class="fa-solid fa-camera" ></i>
+                    </div>
+                    <p style="margin: 0; margin-left: 10px; font-family: sans-serif; font-weight: 300;">Live all</p>
+                </button>
+            </div>
 
             <div style="margin-top: 10px;" id="floor1">
                 <button 
@@ -95,7 +95,7 @@
                         >
                             <p style="font-family: sans-serif; font-weight: 300;">Live view</p>
                         </button>
-                        {{#each cameras}}
+                        {{#each this.Config.cameras}}
                         {{#ifFloor this.floor "JPO-001"}}
                             <script>
                                 inputData(`{{this.floor}}`,`{{this.name}}` ,`{{@key}}`)
@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div style="margin-top: 10px;" id="floor2">
                 <button 
                     class="sidebar-items" 
@@ -135,7 +135,7 @@
                         >
                             <p style="font-family: sans-serif; font-weight: 300;">Live view</p>
                         </button>
-                        {{#each cameras}}
+                        {{#each this.Config.cameras}}
                         {{#ifFloor this.floor "JPO-002"}}
                             <script>
                                 inputData(`{{this.floor}}`,`{{this.name}}` ,`{{@key}}`)
@@ -175,7 +175,7 @@
                         >
                             <p style="font-family: sans-serif; font-weight: 300;">Live view</p>
                         </button>
-                        {{#each cameras}}
+                        {{#each this.Config.cameras}}
                         {{#ifFloor this.floor "JPO-003"}}
                             <script>
                                 inputData(`{{this.floor}}`,`{{this.name}}` ,`{{@key}}`)
@@ -192,7 +192,8 @@
                         {{/each}}
                     </div>
                 </div>
-            </div>
+            </div> 
+            
         </div>
 
         <!-- Main Content -->
@@ -336,28 +337,28 @@
     </template>
 
     <script>
-      function generateSingleLive(ID, Name){
-        fetch(`/singleLive/${ID}/${Name}`)
-          .then(response => {
-            if (response.status === 200) {
-              return response.text();
-            } else {
-              console.error("Gagal")
-            }
-          })
-      }
+        function generateSingleLive(ID, Name){
+          fetch(`/singleLive/${ID}/${Name}`)
+            .then(response => {
+              if (response.status === 200) {
+                return response.text();
+              } else {
+                console.error("Gagal")
+              }
+            })
+        }
     </script>
 
     <script>
-      const tablePOLDA = document.getElementById("tablePolda")
-      const tableGBK = document.getElementById("tableGbk")
-      const tableBUNSEN = document.getElementById("tableBunsen")
-      const textTablePOLDA = document.getElementById("textTablePolda")
-      const textTableGBK = document.getElementById("textTableGbk")
-      const textTableBUNSEN = document.getElementById("textTableBunsen")
+        const tablePOLDA = document.getElementById("tablePolda")
+        const tableGBK = document.getElementById("tableGbk")
+        const tableBUNSEN = document.getElementById("tableBunsen")
+        const textTablePOLDA = document.getElementById("textTablePolda")
+        const textTableGBK = document.getElementById("textTableGbk")
+        const textTableBUNSEN = document.getElementById("textTableBunsen")
 
 
-      function live(floor) {
+        function live(floor) {
         if (floor == "JPO-001") {
             tablePOLDA.style.display = "block"
             tableGBK.style.display = "none"
@@ -387,55 +388,77 @@
             textTableGBK.style.display = "block"
             textTableBUNSEN.style.display = "block"
         }
-      }
-      function toggleFloor(floorId) {
+        }
+        function toggleFloor(floorId) {
         const cardContent = document.getElementById(floorId).getElementsByClassName('card-content')[0];
         cardContent.style.maxHeight = cardContent.style.maxHeight === '0px' ? cardContent.scrollHeight + 'px' : '0px';
-          // count sum of height from card-content inside .floor-card which opened
+            // count sum of height from card-content inside .floor-card which opened
         let totalHeight = 0;
         const floorCards = document.querySelectorAll('.floor-card');
         floorCards.forEach((floorCard) => {
-          const content = floorCard.querySelector('.card-content');
-          if (floorCard.id === floorId && content.style.maxHeight !== '0px') {
+            const content = floorCard.querySelector('.card-content');
+            if (floorCard.id === floorId && content.style.maxHeight !== '0px') {
             totalHeight += content.scrollHeight;
-          }
+            }
         });
-      }
+        }
     </script>
+
     <script>
 
-        // console.log('{{this.cam}}')
-        livePerJPO('JPO-001', '{{this.liveConfig.codecString}}')
+        console.log('{{this.ID}}')
+        livePerJPO('JPO-001', '{{this.Config.liveConfig.codecString}}')
         setTimeout(function() {
-            livePerJPO('JPO-002', '{{this.liveConfig.codecString}}')
-            test = document.getElementById("liveName9")
+            livePerJPO('JPO-002', '{{this.Config.liveConfig.codecString}}')
 
         }, 6000);
         setTimeout(function() {
-            livePerJPO('JPO-003', '{{this.liveConfig.codecString}}')
+            livePerJPO('JPO-003', '{{this.Config.liveConfig.codecString}}')
 
         }, 12000);
+
+        if('{{this.ID}}' == 1){
+            tablePOLDA.style.display = "block"
+            tableGBK.style.display = "none"
+            tableBUNSEN.style.display = "none"
+            textTablePOLDA.style.display = "block"
+            textTableGBK.style.display = "none"
+            textTableBUNSEN.style.display = "none"
+        }else if('{{this.ID}}' == 2){
+            tableGBK.style.display = "block"
+            tableBUNSEN.style.display = "none"
+            tablePOLDA.style.display = "none"
+            textTablePOLDA.style.display = "none"
+            textTableGBK.style.display = "block"
+            textTableBUNSEN.style.display = "none"
+        }else if('{{this.ID}}' == 3){
+            tableBUNSEN.style.display = "block"
+            tableGBK.style.display = "none"
+            tablePOLDA.style.display = "none"
+            textTablePOLDA.style.display = "none"
+            textTableGBK.style.display = "none"
+            textTableBUNSEN.style.display = "block"
+        }
     </script>
     <script>
-      var sidebarButton = document.getElementById('sidebar-button');
-      var sidebar = document.getElementById('sidebar');
-  
-      var statusSidebar = "opened";
-  
-      sidebarButton.addEventListener("click", function(){
-        if (statusSidebar === "closed") {
-          sidebar.style.display = "block";
-          statusSidebar = "opened";
-        }else{
-          sidebar.style.display = "none";
-          statusSidebar = "closed";
-        }
-      });
+        var sidebarButton = document.getElementById('sidebar-button');
+        var sidebar = document.getElementById('sidebar');
+    
+        var statusSidebar = "opened";
+    
+        sidebarButton.addEventListener("click", function(){
+          if (statusSidebar === "closed") {
+            sidebar.style.display = "block";
+            statusSidebar = "opened";
+          }else{
+            sidebar.style.display = "none";
+            statusSidebar = "closed";
+          }
+        });
     </script>
-
-    <!-- Font-Awesome -->
-    <script src="https://kit.fontawesome.com/e748e4b029.js" crossorigin="anonymous"></script>
-
+  
+      <!-- Font-Awesome -->
+      <script src="https://kit.fontawesome.com/e748e4b029.js" crossorigin="anonymous"></script>
+  
 </body>
-
 </html>

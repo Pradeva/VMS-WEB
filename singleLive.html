@@ -43,8 +43,8 @@
     <button class="back-button" id="sidebar-button"><i class="fa-solid fa-bars" style="font-size: 24px; margin-left: 10px; color: white;"></i></button>
     <div style="margin-left: 30px;"><img src="/static/images/BinaMarga.png" width="40" height="40"></div>
     <div style="margin-left: 30px;">
-      <div class="topPanelTitle" style="font-weight: 600; color: white;">DINAS BINA MARGA</div>
-      <div style="font-size: 7px; color: white;">PROVINSI DKI JAKARTA</div>
+      <div class="topPanelTitle" style="font-weight: 600; color: white; font-family: sans-serif;">DINAS BINA MARGA</div>
+      <div style="font-size: 7px; color: white; font-family: sans-serif;">PROVINSI DKI JAKARTA</div>
     </div>
   </nav>
 
@@ -53,22 +53,22 @@
     <div class="col-md-2" style="background-color: #19376D; padding: 0;" id="sidebar">
       <div style="margin-top: 30px;">
           <a href="http://dbm-dashboard.rastek.id/" style="text-decoration: none;">
-              <button class="sidebar-items" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;">
+              <button class="sidebar-items" style="font-family: sans-serif; background-color: transparent; border: none;">
                   <div style="width: 30px;">
                       <i class="fa-solid fa-table-columns" ></i>
                   </div>
-                  <p style="margin: 0; margin-left: 10px;">Dashboard</p>
+                  <p style="margin: 0; margin-left: 10px; font-family: sans-serif; font-weight: 300;">Dashboard</p>
               </button>
           </a>
       </div>
 
       <div style="margin-top: 10px;">
         <a href="http://10.168.1.22:7878/dashboard" style="text-decoration: none;">
-            <button class="sidebar-items" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;">
+            <button class="sidebar-items" style="font-family: sans-serif; background-color: transparent; border: none;">
                 <div style="width: 30px;">
                     <i class="fa-solid fa-camera" ></i>
                 </div>
-                <p style="margin: 0; margin-left: 10px;">VMS Dashboard</p>
+                <p style="margin: 0; margin-left: 10px; font-family: sans-serif; font-weight: 300;">VMS Dashboard</p>
             </button>
         </a>
       </div>
@@ -76,13 +76,13 @@
       <div style="margin-top: 10px;" id="floor1">
           <button 
               class="sidebar-items" 
-              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+              style="font-family: sans-serif; background-color: transparent; border: none;"
               onclick="toggleFloor('floor1')"
           >
               <div style="width: 30px;">
                   <i class="fa-solid fa-map-pin"></i>
               </div>
-              <p style="margin: 0; margin-left: 10px;">Gelora Bung Karno</p>
+              <p style="margin: 0; margin-left: 10px; font-family: sans-serif; font-weight: 300;">Polda Metro Jaya</p>
               <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
           </button>
           <div class="card-content" style="max-height: 0px; border-radius: 5px;">
@@ -95,9 +95,9 @@
                       <a href="/singleLive/{{@key}}/{{this.name}}/{{this.floor}}" style="text-decoration: none;">
                           <button 
                               class="sidebar-items" 
-                              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                              style="font-family: sans-serif; background-color: transparent; border: none;"
                           >
-                              <p>{{this.name}}</p>
+                              <p style="font-family: sans-serif; font-weight: 300;">{{this.name}}</p>
                           </button>
                       </a>
                   {{/ifFloor}}
@@ -109,13 +109,13 @@
       <div style="margin-top: 10px;" id="floor2">
           <button 
               class="sidebar-items" 
-              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+              style="font-family: sans-serif; background-color: transparent; border: none;"
               onclick="toggleFloor('floor2')"
           >
               <div style="width: 30px;">
                   <i class="fa-solid fa-map-pin"></i>
               </div>
-              <p style="margin: 0; margin-left: 10px;">Polda Metro Jaya</p>
+              <p style="margin: 0; margin-left: 10px; font-family: sans-serif; font-weight: 300;">Gelora Bung Karno</p>
               <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
           </button>
           <div class="card-content" style="max-height: 0px; border-radius: 5px;">
@@ -128,9 +128,9 @@
                       <a href="/singleLive/{{@key}}/{{this.name}}/{{this.floor}}" style="text-decoration: none;">
                           <button 
                               class="sidebar-items" 
-                              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                              style="font-family: sans-serif; background-color: transparent; border: none;"
                           >
-                              <p>{{this.name}}</p>
+                              <p style="font-family: sans-serif; font-weight: 300;">{{this.name}}</p>
                           </button>
                       </a>
                   {{/ifFloor}}
@@ -142,13 +142,13 @@
       <div style="margin-top: 10px;" id="floor3">
           <button 
               class="sidebar-items" 
-              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+              style="font-family: sans-serif; background-color: transparent; border: none;"
               onclick="toggleFloor('floor3')"
           >
               <div style="width: 30px;">
                   <i class="fa-solid fa-map-pin"></i>
               </div>
-              <p style="margin: 0; margin-left: 10px;">Bundaran Senayan</p>
+              <p style="margin: 0; margin-left: 10px; font-family: sans-serif; font-weight: 300;">Bundaran Senayan</p>
               <i class="fa-solid fa-caret-up fa-rotate-180" style="margin-left: 20px;"></i>
           </button>
           <div class="card-content" style="max-height: 0px; border-radius: 5px;">
@@ -161,9 +161,9 @@
                       <a href="/singleLive/{{@key}}/{{this.name}}/{{this.floor}}" style="text-decoration: none;">
                           <button 
                               class="sidebar-items" 
-                              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background-color: transparent; border: none;"
+                              style="font-family: sans-serif; background-color: transparent; border: none;"
                           >
-                              <p>{{this.name}}</p>
+                              <p style="font-family: sans-serif; font-weight: 300;">{{this.name}}</p>
                           </button>
                       </a>
                   {{/ifFloor}}
@@ -178,14 +178,14 @@
       <div style="display: flex; margin-left: 20px;">
         <div 
           style="display: flex;
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
             margin-top: 10px;
             padding: 2px;
             border: solid; border-color: white; border-width: 3px; border-radius: 5px;
           "
         >
-          <p style="color: white; margin: 0;">Nama Spot : {{this.Name}}</p>
-          <p style="color: white; margin: 0; margin-left: 20px;">Nama JPO : {{this.Jpo}}</p>
+          <p style="color: white; margin: 0; font-family: sans-serif; font-weight: 300;">Nama Spot : {{this.Name}}</p>
+          <p style="color: white; margin: 0; margin-left: 20px; font-family: sans-serif; font-weight: 300;">Nama JPO : {{this.Jpo}}</p>
         </div>
       </div>
       <div  id="liveContainer" 

@@ -60,10 +60,12 @@ function livePerJPO(floor, config){
 	// 	})
 	// })
 	// let iName = 0;
+
 	camData[floor].forEach(element => {
 		StartLive(element, camDataName[floor][iName], config)
 		iName++
 	});
+	iName = 0
 }
 
 // function StartStats() {
@@ -383,7 +385,7 @@ function StartLive(ID, Name, Codec) {
 
 			const liveName0Element = document.getElementById("liveName" + cellNumber);
 			console.log(cellNumber)
-			liveName0Element.textContent=Name;
+			liveName0Element.innerHTML=Name;
 			// Tambahkan tombol "Close" ke dalam sel tabel
 			const closeButton = document.createElement('button');
 			const fullButton = document.createElement('button');
